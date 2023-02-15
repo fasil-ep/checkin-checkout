@@ -70,7 +70,7 @@ export function BarChart() {
   };
 
   return (
-    <Box pt={3} width={"auto"}>
+    <Box pt={3}>
       <Bar options={options} data={data} />
     </Box>
   );

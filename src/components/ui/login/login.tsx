@@ -6,14 +6,12 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/router";
+import { useMediaQuery } from "@mui/material";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [message, seMessage] = React.useState(false);
-
-  console.log(email, "email");
-  console.log(password, "pass");
 
   const router = useRouter();
 
@@ -28,10 +26,12 @@ const Login = () => {
     }
   };
 
+  const matchesm = useMediaQuery("(min-width:500px)");
+
   return (
-    <Stack direction={"row"} justifyContent={"center"} pt={10}>
+    <Stack direction={"row"} justifyContent={"center"} pt={matchesm ? 10 : 5}>
       <Box
-        minWidth={400}
+        minWidth={matchesm ? 400 : 250}
         sx={{ border: "1px solid #037DC3", p: 3, borderRadius: "4px" }}
       >
         <form onSubmit={submitButton}>

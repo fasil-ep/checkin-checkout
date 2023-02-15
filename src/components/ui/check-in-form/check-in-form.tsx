@@ -5,12 +5,15 @@ import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useMediaQuery } from "@mui/material";
 
 const CheckInForm = () => {
+  const matchesm = useMediaQuery("(min-width:500px)");
+
   return (
     <Stack direction={"row"} justifyContent={"center"} pt={2}>
       <Box
-        minWidth={500}
+        minWidth={matchesm ? 500 : "100%"}
         sx={{ border: "1px solid #037DC3", p: 3, borderRadius: "4px" }}
       >
         <Stack sx={{ mb: 1 }}>
