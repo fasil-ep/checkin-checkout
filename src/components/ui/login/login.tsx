@@ -8,38 +8,33 @@ import Typography from "@mui/material/Typography";
 import { useRouter } from "next/router";
 
 const Login = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [message, seMessage] = React.useState(false);
+
+  console.log(email, "email");
+  console.log(password, "pass");
+
   const router = useRouter();
-  const initialRef: any = null;
 
-  const email = React.useRef(initialRef);
-  const password = React.useRef(initialRef);
-
-  // console.log(email.current.value, "email");
-
-  // const getEmail = localStorage.getItem("emailData");
-  // const getPassword = localStorage.getItem("passwordData");
-
-  // console.log(getEmail, "getEmail");
-
-  const loginemail = "checkin@gmail.com";
-  const loginpassword = "12345";
-
-  const handleSubmit = () => {
-    if (
-      email.current?.value == "abc@gmail.com" &&
-      password.current?.value == "12345"
-    ) {
-      localStorage.setItem("emailData", loginemail);
-      localStorage.setItem("passwordData", loginpassword);
+  const submitButton = (event: any) => {
+    event?.preventDefault();
+    if (email === "checkin@gmail.com" && password === "12345") {
+      localStorage.setItem("emailData", "checkin@gmail.com");
+      localStorage.setItem("passwordData", "12345");
+      router.push("/dashboard");
+    } else {
+      seMessage(true);
     }
   };
+
   return (
     <Stack direction={"row"} justifyContent={"center"} pt={10}>
       <Box
         minWidth={400}
         sx={{ border: "1px solid #037DC3", p: 3, borderRadius: "4px" }}
       >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submitButton}>
           <Stack sx={{ mb: 1 }}>
             <Typography
               sx={{
@@ -59,11 +54,12 @@ const Login = () => {
             >
               Email
             </InputLabel>
+
             <TextField
               type="email"
               name="email"
               placeholder="Email"
-              ref={email}
+              onChange={(e: any) => setEmail(e.target.value)}
             />
           </Stack>
           <Stack pt={2} pb={1}>
@@ -74,9 +70,14 @@ const Login = () => {
               type="password"
               name="password"
               placeholder="Password"
-              ref={password}
+              onChange={(e: any) => setPassword(e.target.value)}
             />
           </Stack>
+          {message && (
+            <Typography sx={{ color: "red" }}>
+              Your crydentials are incorrect
+            </Typography>
+          )}
 
           <Stack pt={1} pb={1}>
             <Typography sx={{ color: "#037DC3", cursor: "pointer" }}>

@@ -24,7 +24,6 @@ const settings = [
   { name: "Profile", path: "dashboard" },
   { name: "Profile", path: "dashboard" },
   { name: "Profile", path: "dashboard" },
-  { name: "LogOut", path: "/" },
 ];
 
 function ResponsiveAppBar() {
@@ -48,6 +47,11 @@ function ResponsiveAppBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const logoutHandler = () => {
+    router.push("/");
+    localStorage.clear();
   };
 
   const router = useRouter();
@@ -232,6 +236,11 @@ function ResponsiveAppBar() {
                     <Typography textAlign="center">{setting.name}</Typography>
                   </MenuItem>
                 ))}
+                <MenuItem sx={{ cursor: "pointer" }}>
+                  <Typography onClick={logoutHandler} textAlign="center">
+                    Log Out
+                  </Typography>
+                </MenuItem>
               </Menu>
             </Box>
           </Toolbar>
